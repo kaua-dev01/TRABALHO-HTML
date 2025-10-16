@@ -40,10 +40,12 @@
 
         /* Coluna Esquerda: com IMAGEM DE FUNDO SÓLIDA */
         .left-panel {
+            /* CORREÇÃO APLICADA: Corrigido o caminho da imagem e adicionado overlay */
             background-image: url('/CIA\ DO\ CORPO\ FOTO.jpg'); 
             background-size: cover; 
             background-position: center;
             background-repeat: no-repeat;
+            position: relative; /* Necessário para o overlay */
             
             /* Ajuste de Largura - mantido em 60% para o painel de imagem */
             width: 60%; 
@@ -56,7 +58,24 @@
             text-align: center;
         }
         
+        /* Overlay escuro para melhor contraste do texto sobre a imagem */
+        .left-panel::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4); 
+            z-index: 1;
+        }
+        
         /* Ajustes de texto para melhor legibilidade sobre a imagem */
+        .left-panel h2, .left-panel p, .left-panel .button {
+            z-index: 2; /* Garante que o texto fique acima do overlay */
+            position: relative;
+        }
+        
         .left-panel h2 {
             font-size: 2.5em;
             margin-bottom: 10px;
@@ -108,9 +127,9 @@
         .input-group { 
             position: relative; 
             margin-bottom: 15px; 
-            width: 90%; /* Aumentado para melhor visualização no painel menor */
+            width: 90%; 
         }
-        .input-group i { 
+        .input-group i.input-icon { 
             position: absolute; 
             left: 15px; 
             top: 50%; 
@@ -122,6 +141,22 @@
             background-color: var(--cor-input-fundo); color: var(--cor-texto-escuro);
             box-sizing: border-box; font-size: 1em;
         }
+        
+        /* NOVO CSS: Estilo para o botão Mostrar/Esconder Senha */
+        .toggle-password {
+            position: absolute; 
+            right: 15px; /* Posição à direita */
+            top: 50%; 
+            transform: translateY(-50%); 
+            cursor: pointer;
+            color: #999;
+            transition: color 0.2s;
+        }
+        
+        .toggle-password:hover {
+            color: var(--cor-principal);
+        }
+
 
         /* Botões */
         .button {
@@ -167,7 +202,9 @@
     <div class="main-container">
         
         <div class="left-panel">
-   
+            <h2>Bem-vindo de volta!</h2>
+            <p>Para se conectar e acessar seu treino, por favor, faça login com suas informações.</p>
+            <button class="button sign-in">Entrar</button>
         </div>
 
         
@@ -176,17 +213,41 @@
 
             <form>
                 <div class="input-group">
-                    <i class="fas fa-envelope"></i>
+                    <i class="fas fa-envelope input-icon"></i>
                     <input type="email" placeholder="Email">
                 </div>
+                
                 <div class="input-group">
-                    <i class="fas fa-lock"></i>
-                    <input type="password" placeholder="Senha">
+                    <i class="fas fa-lock input-icon"></i>
+                    <input type="password" placeholder="Senha" id="passwordInput">
+                    <i class="fas fa-eye toggle-password" id="togglePassword"></i>
                 </div>
+                
                 <button class="button sign-up">Cadastrar</button>
             </form>
         </div>
     </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const togglePassword = document.getElementById('togglePassword');
+            const passwordInput = document.getElementById('passwordInput');
+
+            if (togglePassword && passwordInput) {
+                togglePassword.addEventListener('click', function () {
+                    // Verifica o tipo atual do input
+                    const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                    
+                    // Altera o tipo do input
+                    passwordInput.setAttribute('type', type);
+                    
+                    // Altera o ícone (fa-eye para fa-eye-slash)
+                    this.classList.toggle('fa-eye');
+                    this.classList.toggle('fa-eye-slash');
+                });
+            }
+        });
+    </script>
 
 </body>
 </html>
