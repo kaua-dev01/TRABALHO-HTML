@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login / Registro com Imagem Sólida</title>
+    
+    <style>
+        /* Variáveis CSS para facilitar a alteração de cores */
+        :root {
+            --cor-principal: #000000; 
+            --cor-secundaria: #000000; 
+            --cor-texto-claro: #ffffff;
+            --cor-texto-escuro: #000000;
+            --cor-input-fundo: #f0f0f0;
+        }
+
+        body {
+            /* Degradê para o fundo de TODA a página */
+            background-image: linear-gradient(to bottom right, #c2c2c2, #ffffff);
+            min-height: 100vh;
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        /* Container principal que agrupa as duas colunas */
+        .main-container {
+            background-color: var(--cor-texto-claro);
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); 
+            width: 800px;
+            height: 500px;
+            display: flex;
+            overflow: hidden;
+        }
+
+        /* Coluna Esquerda: com IMAGEM DE FUNDO SÓLIDA */
+        .left-panel {
+            /* CORREÇÃO APLICADA: Corrigido o caminho da imagem e adicionado overlay */
+            background-image: url('/CIA\ DO\ CORPO\ FOTO.jpg'); 
+            background-size: cover; 
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative; /* Necessário para o overlay */
+            
+            /* Ajuste de Largura - mantido em 60% para o painel de imagem */
+            width: 60%; 
+            color: var(--cor-texto-claro); 
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        /* Overlay escuro para melhor contraste do texto sobre a imagem */
+        .left-panel::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4); 
+            z-index: 1;
+        }
+        
+        /* Ajustes de texto para melhor legibilidade sobre a imagem */
+        .left-panel h2, .left-panel p, .left-panel .button {
+            z-index: 2; /* Garante que o texto fique acima do overlay */
+            position: relative;
+        }
+        
+        .left-panel h2 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 0 0 8px rgba(0, 0, 0, 0.8);
+        }
+
+        .left-panel p {
+            font-size: 0.9em;
+            line-height: 1.5;
+            margin-bottom: 30px;
+            max-width: 80%;
+            text-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
+        }
+
+        /* Coluna Direita: "Create Account" - Fundo Branco */
+        .right-panel {
+            background-color: var(--cor-texto-claro); 
+            /* Ajuste de Largura - mantido em 40% (60% + 40% = 100%) */
+            width: 40%;
+            color: var(--cor-texto-escuro);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .right-panel h1 {
+            font-size: 2.2em;
+            margin-bottom: 20px;
+            color: var(--cor-principal);
+        }
+        
+        /* Estilos de ícones, inputs e botões */
+        .social-icons { margin-bottom: 20px; }
+        .social-icons a {
+            display: inline-flex; justify-content: center; align-items: center;
+            width: 40px; height: 40px; border: 1px solid #000000; border-radius: 50%;
+            margin: 0 5px; color: var(--cor-texto-escuro); text-decoration: none;
+            font-size: 1.2em; transition: background-color 0.3s, color 0.3s;
+        }
+        .social-icons a:hover {
+            background-color: var(--cor-principal);
+            color: var(--cor-texto-claro);
+        }
+
+        /* Grupo de Input com ícone */
+        .input-group { 
+            position: relative; 
+            margin-bottom: 15px; 
+            width: 90%; 
+        }
+        .input-group i.input-icon { 
+            position: absolute; 
+            left: 15px; 
+            top: 50%; 
+            transform: translateY(-50%); 
+            color: #999; 
+        }
+        .input-group input {
+            width: 100%; padding: 10px 10px 10px 45px; border: none; border-radius: 5px;
+            background-color: var(--cor-input-fundo); color: var(--cor-texto-escuro);
+            box-sizing: border-box; font-size: 1em;
+        }
+        
+        /* NOVO CSS: Estilo para o botão Mostrar/Esconder Senha */
+        .toggle-password {
+            position: absolute; 
+            right: 15px; /* Posição à direita */
+            top: 50%; 
+            transform: translateY(-50%); 
+            cursor: pointer;
+            color: #999;
+            transition: color 0.2s;
+        }
+        
+        .toggle-password:hover {
+            color: var(--cor-principal);
+        }
+
+
+        /* Botões */
+        .button {
+            background-color: var(--cor-principal);
+            color: var(--cor-texto-claro);
+            padding: 12px 40px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: background-color 0.3s;
+        }
+
+        .button.sign-in { 
+            background-color: transparent; 
+            border: 2px solid var(--cor-texto-claro); 
+            margin-top: 20px;
+        }
+        
+        .button.sign-in:hover { 
+            background-color: var(--cor-texto-claro);
+            color: var(--cor-principal); 
+        }
+
+        .button.sign-up {
+            margin-top: 30px;
+            background-color: var(--cor-principal); 
+        }
+        
+        .button.sign-up:hover {
+            background-color: var(--cor-secundaria);
+        }
+    </style>
+    
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+
+    <div class="main-container">
+        
+        <div class="left-panel">
+            <h2>Bem-vindo de volta!</h2>
+            <p>Para se conectar e acessar seu treino, por favor, faça login com suas informações.</p>
+            <button class="button sign-in">Entrar</button>
+        </div>
+
+        
+        <div class="right-panel">
+            <h1>Criar Conta</h1>
+
+            <form action="TelaDeInicio (2).html">
+                <div class="input-group">
+                    <i class="fas fa-envelope input-icon"></i>
+                    <input type="email" placeholder="Email" required>
+                </div>
+                
+                <div class="input-group">
+                    <i class="fas fa-lock input-icon"></i>
+                    <input type="password" placeholder="Senha" id="passwordInput" required>
+                    <i class="fas fa-eye toggle-password" id="togglePassword"></i>
+                </div>
+                
+                <button type="submit" class="button sign-up">Cadastrar</button>
+                
+            </form>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const togglePassword = document.getElementById('togglePassword');
+            const passwordInput = document.getElementById('passwordInput');
+
+            if (togglePassword && passwordInput) {
+                togglePassword.addEventListener('click', function () {
+                    // Verifica o tipo atual do input
+                    const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                    
+                    // Altera o tipo do input
+                    passwordInput.setAttribute('type', type);
+                    
+                    // Altera o ícone (fa-eye para fa-eye-slash)
+                    this.classList.toggle('fa-eye');
+                    this.classList.toggle('fa-eye-slash');
+                });
+            }
+        });
+    </script>
+
+</body>
+</html>
