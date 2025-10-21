@@ -1,3 +1,0 @@
-markdown
-
-![CIA DO CORPO](./CIA%20DO%20CORPO%20FOTO.jpg)
