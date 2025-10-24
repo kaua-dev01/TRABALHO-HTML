@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cia do Corpo</title>
+    <link rel="stylesheet" href="TelaDeInicio.css">
+</head>
+<body>
+
+    <header>
+        <!-- <img src="/CIA DO CORPO FOTO.jpg" onerror="this.onerror=null; this.src='https://placehold.co/200x100/e92222/ffffff?text=CIA+DO+CORPO+LOGO';" alt="Logo Cia do Corpo"> -->
+        <button id="menu-toggle">☰</button>
+        
+        <nav id="main-nav">
+            <ul>
+                <li><a href="#">Planos</a></li>
+                <li><a href="#">Contato</a></li>
+                <li><a href="/login/login.html">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="banner">
+        1º MÊS POR R$0,99! COMPRE AGORA
+    </div>
+
+    <div class="search-section">
+        <p>E aí, onde você quer treinar?</p>
+        <div>
+            <input type="text" placeholder="Digite o CEP, bairro ou cidade">
+            <button>Buscar</button>
+        </div>
+    </div>
+
+    <div class="gyms">
+        <div class="gym-card">
+            <img src="https://placehold.co/600x400/000000/ffffff?text=ACADEMIA+UNIDADE+1" alt="Academia 1">
+            <div class="info">
+                <h3>Plano Básico</h3>
+                <p>Estr. do Bongi, 1074 - Prado, Recife - PE, 50751-070</p>
+                <a href="/plano basico/basico.html">Ver Plano</a>
+            </div>
+        </div>
+
+        <div class="gym-card">
+            <img src="https://placehold.co/600x400/e92222/ffffff?text=ACADEMIA+UNIDADE+2" alt="Academia 2">
+            <div class="info">
+                <h3>Plano Premium </h3>
+                <p>Estr. do Bongi, 1074 - Prado, Recife - PE, 50751-070</p>
+                <a href="/plano premium/premium.html">Ver Plano</a>
+            </div>
+        </div>
+
+        <div class="gym-card">
+            <img src="https://placehold.co/600x400/333333/ffffff?text=ACADEMIA+UNIDADE+3" alt="Academia 3">
+            <div class="info">
+                <h3>Plano Família</h3>
+                <p>Estr. do Bongi, 1074 - Prado, Recife - PE, 50751-070</p>
+                <a href="/plano familia/familia.html">Ver Plano</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            var nav = document.getElementById('main-nav');
+            nav.classList.toggle('open');
+        });
+    </script>
+
+</body>
+</html>

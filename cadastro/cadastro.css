@@ -1,0 +1,64 @@
+/* Estilos customizados */
+:root {
+    --primary-red: #e92222;
+    --dark-background: #1a1a1a;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+}
+
+/* Painel esquerdo com gradiente vermelho */
+.left-panel {
+    background: linear-gradient(135deg, var(--primary-red) 0%, #141414 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgb(255, 255, 255);
+    padding: 2rem;
+    text-align: center;
+}
+
+/* Logo */
+.logo-img {
+    width: 300px;
+    height: auto;
+    border-radius: 10px;
+    object-fit: contain;
+}
+
+/* Ícones nos inputs */
+.input-group {
+    position: relative;
+}
+
+.input-icon {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #9ca3af;
+}
+
+.input-group input {
+    padding-left: 3rem;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #9ca3af;
+}
+
+/* Layout responsivo (divisão de tela) */
+@media (min-width: 768px) {
+    .main-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        min-height: 100vh;
+    }
+}

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cia do Corpo - Cadastro</title>
+
+    <!-- Carrega Tailwind CSS para estilização moderna e responsiva -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Carrega a fonte Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Carrega Font Awesome (para os ícones) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    
+    <style>
+        /* Estilos customizados e cores integrados */
+        :root {
+            --primary-red: #db4242;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+        }
+
+        /* Estilo para o painel esquerdo (cor sólida vermelha com gradiente) */
+        .left-panel {
+            background: linear-gradient(135deg, var(--primary-red) 0%, #a31818 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .logo-img {
+            /* Fallback para imagem não encontrada */
+            width: 150px;
+            height: auto;
+            border-radius: 8px; /* Borda levemente arredondada para a imagem */
+        }
+
+        .input-group {
+            position: relative;
+        }
+
+        .input-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #9ca3af; /* Tailwind gray-400 */
+        }
+        
+        .input-group input {
+            padding-left: 3rem; /* Espaço para o ícone */
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #9ca3af;
+        }
+
+        /* Responsive design for split panel */
+        @media (min-width: 768px) {
+            .main-container {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                min-height: 100vh;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100">
+    <div class="main-container">
+        <!-- Painel Esquerdo -->
+        <div class="left-panel md:min-h-screen">
+            <div class="text-center">
+                <!-- ✅ Logo com fallback de imagem -->
+                <img src="/CIA DO CORPO FOTO.jpg" onerror="this.onerror=null; this.src='https://placehold.co/150x75/e92222/ffffff?text=LOGO';" alt="Logo da Cia do Corpo" class="mx-auto mb-6 logo-img">
+                <h2 class="text-4xl font-bold mb-4">Bem-vindo(a)!</h2>
+                <p class="text-xl">Sua jornada fitness começa aqui. Cadastre-se em segundos.</p>
+            </div>
+        </div>
+
+        <!-- Painel Direito -->
+        <div class="right-panel flex items-center justify-center p-8 md:p-16 bg-white">
+            <div class="w-full max-w-sm">
+                <h1 class="text-3xl font-bold mb-8 text-gray-800 text-center">Criar Conta</h1>
+
+                <!-- Adicionado ID para o formulário e removido o onsubmit inline -->
+                <form id="registrationForm" class="space-y-6">
+                    
+                    <div class="input-group">
+                        <i class="fas fa-user input-icon"></i>
+                        <input type="text" placeholder="Nome Completo" required 
+                            class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--primary-red)]">
+                    </div>
+
+                    <div class="input-group">
+                        <i class="fas fa-envelope input-icon"></i>
+                        <input type="email" placeholder="Email" required 
+                            class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--primary-red)]">
+                    </div>
+                    
+                    <div class="input-group">
+                        <i class="fas fa-lock input-icon"></i>
+                        <input type="password" placeholder="Senha" id="passwordInput" required 
+                            class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--primary-red)]">
+                        <i class="fas fa-eye toggle-password" id="togglePassword"></i>
+                    </div>
+                    
+                    <!-- Este botão agora é processado pelo evento 'submit' da tag <form> -->
+                    <button type="submit" 
+                        class="w-full button sign-up bg-[var(--primary-red)] text-white p-4 rounded-lg font-semibold hover:bg-[#c41c1c] transition-colors shadow-lg shadow-[var(--primary-red)]/50">
+                        Cadastrar
+                    </button>
+                </form>
+
+                <p class="mt-6 text-center text-gray-600">
+                    Já tem uma conta? 
+                    <a href="#" id="loginRedirectLink" class="text-[var(--primary-red)] font-semibold hover:underline transition-colors">
+                        Faça Login
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const togglePassword = document.getElementById('togglePassword');
+            const passwordInput = document.getElementById('passwordInput');
+            const loginRedirectLink = document.getElementById('loginRedirectLink');
+            
+            // NOVO: Seleciona o formulário pelo ID
+            const registrationForm = document.getElementById('registrationForm');
+
+            // Lógica para mostrar/esconder senha
+            if (togglePassword && passwordInput) {
+                togglePassword.addEventListener('click', function () {
+                    const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                    passwordInput.setAttribute('type', type);
+                    this.classList.toggle('fa-eye');
+                    this.classList.toggle('fa-eye-slash');
+                });
+            }
+
+            // Lógica de redirecionamento para a página de Login
+            if (loginRedirectLink) {
+                loginRedirectLink.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    window.location.href = "/login/login.html";
+                });
+            }
+            
+            // Lógica de redirecionamento APÓS o envio do formulário (botão "Cadastrar")
+            if (registrationForm) {
+                registrationForm.addEventListener('submit', function (e) {
+                    e.preventDefault(); // Previne o envio padrão do formulário
+                    
+                    // Em um ambiente real, aqui ocorreria a validação e o envio dos dados ao servidor.
+                    console.log('Dados do formulário válidos. Redirecionando para a página de sucesso...');
+
+                    // Ação principal: redirecionar para a página de sucesso
+                    // Você pode mudar 'cadastro_sucesso.html' para qualquer outra URL, como a do Dashboard.
+                    window.location.href = '/tela de inicio/TelaDeInicio.html'; 
+                });
+            }
+        });
+    </script>
+</body>
+</html>
