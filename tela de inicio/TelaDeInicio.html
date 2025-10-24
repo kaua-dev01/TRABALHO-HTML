@@ -3,71 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cia do Corpo</title>
-    <link rel="stylesheet" href="TelaDeInicio.css">
+    <title>LIFT ACADEMIA - Seja Mais, Seja LIFT!</title>
+    
+    <link rel="stylesheet" href="TelaDeInicio.css"> 
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
-<body>
+<body class="bg-gray-100">
 
-    <header>
-        <!-- <img src="/CIA DO CORPO FOTO.jpg" onerror="this.onerror=null; this.src='https://placehold.co/200x100/e92222/ffffff?text=CIA+DO+CORPO+LOGO';" alt="Logo Cia do Corpo"> -->
-        <button id="menu-toggle">☰</button>
+    <main class="hero-section hero-bg relative h-screen">
         
-        <nav id="main-nav">
-            <ul>
-                <li><a href="#">Planos</a></li>
-                <li><a href="#">Contato</a></li>
-                <li><a href="/login/login.html">Login</a></li>
-            </ul>
-        </nav>
-    </header>
+        <header class="main-header fixed top-0 left-0 w-full flex justify-between items-center px-8 lg:px-16 py-3 z-20 shadow-sm">
+            
+            <a href="#" class="logo-container">
+                <span class="logo-text">CIA DO CORPO</span>
+            </a>
 
-    <div class="banner">
-        1º MÊS POR R$0,99! COMPRE AGORA
-    </div>
+            <nav class="hidden lg:flex header-nav text-sm font-semibold space-x-8 xl:space-x-12">
+                <a href="#">HOME</a>
+                <a href="#">UNIDADES</a>
+                <a href="#">CONTATO</a>
+            </nav>
 
-    <div class="search-section">
-        <p>E aí, onde você quer treinar?</p>
-        <div>
-            <input type="text" placeholder="Digite o CEP, bairro ou cidade">
-            <button>Buscar</button>
-        </div>
-    </div>
+            <div class="flex items-center space-x-3 text-gray-700">
+                <a href="#" class="social-icon-link p-2 rounded-full text-xs" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#" class="social-icon-link p-2 rounded-full text-xs" aria-label="Facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+            </div>
+        </header>
 
-    <div class="gyms">
-        <div class="gym-card">
-            <img src="https://placehold.co/600x400/000000/ffffff?text=ACADEMIA+UNIDADE+1" alt="Academia 1">
-            <div class="info">
-                <h3>Plano Básico</h3>
-                <p>Estr. do Bongi, 1074 - Prado, Recife - PE, 50751-070</p>
-                <a href="/plano basico/basico.html">Ver Plano</a>
+        <div class="hero-content absolute inset-0 flex items-center pl-8 md:pl-16 lg:pl-32 z-10">
+            <div class="max-w-xl text-white pt-20"> <h1 class="main-slogan text-5xl md:text-6xl font-extrabold leading-tight mb-4 tracking-wide uppercase drop-shadow-lg">
+                    SEJA MAIS,
+                    <br><span class="text-6xl md:text-7xl">SEJA LIFT!</span>
+                </h1>
+                
+                <p class="text-base font-light mb-8 opacity-90 max-w-sm drop-shadow-md">
+                    Oferecemos diversas modalidades para te ajudar a atingir seus objetivos.
+                </p>
+
+                <a href="/cadastro/cadastro.html" class="cta-button">
+                    <span class="cta-icon-circle">
+                        <i class="fas fa-arrow-right text-xs"></i>
+                    </span>
+                    Conheça a Lift
+                </a>
             </div>
         </div>
-
-        <div class="gym-card">
-            <img src="https://placehold.co/600x400/e92222/ffffff?text=ACADEMIA+UNIDADE+2" alt="Academia 2">
-            <div class="info">
-                <h3>Plano Premium </h3>
-                <p>Estr. do Bongi, 1074 - Prado, Recife - PE, 50751-070</p>
-                <a href="/plano premium/premium.html">Ver Plano</a>
-            </div>
-        </div>
-
-        <div class="gym-card">
-            <img src="https://placehold.co/600x400/333333/ffffff?text=ACADEMIA+UNIDADE+3" alt="Academia 3">
-            <div class="info">
-                <h3>Plano Família</h3>
-                <p>Estr. do Bongi, 1074 - Prado, Recife - PE, 50751-070</p>
-                <a href="/plano familia/familia.html">Ver Plano</a>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        document.getElementById('menu-toggle').addEventListener('click', function() {
-            var nav = document.getElementById('main-nav');
-            nav.classList.toggle('open');
-        });
-    </script>
+    </main>
+    
+    <a href="https://wa.me/" class="whatsapp-float" target="_blank" aria-label="Fale Conosco pelo WhatsApp">
+        <i class="fab fa-whatsapp text-2xl"></i>
+    </a>
 
 </body>
 </html>
